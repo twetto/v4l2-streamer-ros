@@ -43,7 +43,7 @@ ros::Duration get_reset_time() {
 int main(int argc, char *argv[]) {
     // TODO rewrite node in clean code format
     // Default frame rate of 10 Hz
-    float frame_rate = 10.0;
+    float frame_rate = 100.0;
     std::string camera_name = "v4l2_camera";
 
     // Initialize node
@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
     std::string camera_info, encoding;
     int width, height;
     nh_private.param("camera_info", camera_info, std::string(""));
-    nh_private.param("image_encoding", encoding, std::string("rgb8"));
+    nh_private.param("image_encoding", encoding, std::string("bgr8"));
     nh_private.param("width", width, 640);
     nh_private.param("height", height, 480);
 
@@ -102,7 +102,7 @@ int main(int argc, char *argv[]) {
     while (ros::ok()) {
         // Capture frame and convert to rgb
         cv::Mat img = camera.captureRawFrame();
-        cv::cvtColor(img, img, cv::COLOR_YUV2RGB_YUYV);
+        img = cv::imdecode(img, cv::IMREAD_COLOR);
         framecount++;
 
         // Convert to image_msg & publish msg

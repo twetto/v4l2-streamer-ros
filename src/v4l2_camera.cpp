@@ -67,7 +67,7 @@ void v4l2Camera::init() {
 
     // Set video format
     format.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
-    format.fmt.pix.pixelformat = V4L2_PIX_FMT_YUYV;
+    format.fmt.pix.pixelformat = V4L2_PIX_FMT_MJPEG;
     format.fmt.pix.width = v4l2Camera::width;
     format.fmt.pix.height = v4l2Camera::height;
 
@@ -132,7 +132,7 @@ void v4l2Camera::allocateBuffer() {
     buffer = buffertype;
 
     // Declare openCV Buffer address
-    cv::Mat raw_input(format.fmt.pix.height, format.fmt.pix.width, CV_8UC2, buffer_start);
+    cv::Mat raw_input(1, format.fmt.pix.height*format.fmt.pix.width, CV_8UC1, buffer_start);
     v4l2Camera::raw_input = raw_input;
 }
 
