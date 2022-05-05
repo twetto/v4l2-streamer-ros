@@ -70,6 +70,12 @@ void v4l2Camera::init() {
     format.fmt.pix.pixelformat = V4L2_PIX_FMT_MJPEG;
     format.fmt.pix.width = v4l2Camera::width;
     format.fmt.pix.height = v4l2Camera::height;
+    control.id = V4L2_CID_EXPOSURE_AUTO;
+    control.value = V4L2_EXPOSURE_MANUAL;
+    control.id = V4L2_CID_EXPOSURE_ABSOLUTE;
+    control.value = 157;
+    control.id = V4L2_CID_EXPOSURE_AUTO_PRIORITY;
+    control.value = 1;
 
     // Request desired format
     if (ioctl(fd, VIDIOC_S_FMT, &format) == -1) {

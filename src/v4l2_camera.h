@@ -15,6 +15,7 @@ class v4l2Camera {
     struct v4l2_capability cap;
     struct v4l2_format format;
     struct v4l2_buffer buffer;
+    struct v4l2_control control;
     cv::Mat raw_input;
 
 public:
