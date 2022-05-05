@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
     std::string camera_info, encoding;
     int width, height;
     nh_private.param("camera_info", camera_info, std::string(""));
-    nh_private.param("image_encoding", encoding, std::string("bgr8"));
+    nh_private.param("image_encoding", encoding, std::string("mono8"));
     nh_private.param("width", width, 640);
     nh_private.param("height", height, 480);
 
@@ -103,6 +103,7 @@ int main(int argc, char *argv[]) {
         // Capture frame and convert to rgb
         cv::Mat img = camera.captureRawFrame();
         img = cv::imdecode(img, cv::IMREAD_COLOR);
+        cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);
         framecount++;
 
         // Convert to image_msg & publish msg
