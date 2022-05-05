@@ -24,7 +24,7 @@ public:
     timeval last_ts;
 
     v4l2Camera();
-    v4l2Camera(std::string device_address, int width = 640, int height = 480);
+    v4l2Camera(std::string device_address, int width = 320, int height = 240);
     ~v4l2Camera();
     void init();
     void setFramerate(int fps);

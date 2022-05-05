@@ -56,8 +56,8 @@ int main(int argc, char *argv[]) {
     int width, height;
     nh_private.param("camera_info", camera_info, std::string(""));
     nh_private.param("image_encoding", encoding, std::string("mono8"));
-    nh_private.param("width", width, 640);
-    nh_private.param("height", height, 480);
+    nh_private.param("width", width, 320);
+    nh_private.param("height", height, 240);
 
     // Readout framerate
     // Set publishing frequency
